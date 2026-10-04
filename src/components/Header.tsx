@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-[#222] hidden md:block">
+      <header className="bg-ink text-white hidden md:block">
         <div className="py-2 container flex items-center justify-between mx-auto">
           <div className="flex items-center justify-center ">
             <span>
@@ -33,7 +33,7 @@ const Header = () => {
           <div className="divide divide-gray-400" />
 
           <div className="flex items-center">
-            <p className="mr-1 text-sm">Hurry Up For your new Tour! </p>{" "}
+            <p className="mr-1 text-sm">Women-only departures now booking </p>{" "}
             <Link href="/contact" className="underline text-[#FFdf01]">
               Book your tour
             </Link>

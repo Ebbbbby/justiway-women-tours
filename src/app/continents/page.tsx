@@ -1,88 +1,64 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { FaArrowRight } from "react-icons/fa";
+import SectionHeading from "@/components/SectionHeading";
 import { continents } from "../../../data";
-const ContinentPage = () => {
-  const router = useRouter();
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-  const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.2, duration: 0.6 },
-    }),
-  };
 
-  const slugify = (name: string) => name.toLowerCase().replace(/\s+/g, "-");
+const slugify = (name: string) => name.toLowerCase().replace(/\s+/g, "-");
+
+const ContinentPage = () => {
   return (
-    <div className=" w-fullw-full bg-gradient-to-br from-blue-50 to-blue-100">
-      <div className="max-w-7xl mx-auto px-4 py-10 ">
-        <div className="max-w-5xl mx-auto px-4 py-5 text-center text-[#222]">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={containerVariants}
-          >
-            <h1 className="text-3xl font-bold mb-2 underline">
-              Our Destinations
-            </h1>
-            <p className="text-lg leading-relaxed ">
-              Explore the world&apos;s continents with us. Each destination
-              offers a unique blend of culture, adventure, and natural beauty.
-              Click on any continent to discover more about its wonders and plan
-              your next journey.
-            </p>
-          </motion.div>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 ">
+    <section id="destinations" className="bg-blush/60">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Destinations"
+          title="Where Will You Go Next?"
+          subtitle="Each continent offers its own blend of culture, adventure and natural beauty. Pick one to see the destinations we travel to."
+        />
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {continents.map((continent, index) => (
             <motion.div
               key={continent.name}
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              variants={fadeUp}
-              whileInView="visible"
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              onClick={() =>
-                router.push(`/continents/${slugify(continent.name)}`)
-              }
-              className="relative group cursor-pointer rounded-lg overflow-hidden shadow-md min-h-[250px] md:min-h-[300px] hover:shadow-xl transition-shadow duration-300"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Image
-                src={continent.image}
-                alt={continent.name}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
+              <Link
+                href={`/continents/${slugify(continent.name)}`}
+                className="group relative block aspect-[3/4] overflow-hidden rounded-2xl shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              >
+                <Image
+                  src={continent.image}
+                  alt={continent.name}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" />
 
-              {/* <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-500"></div> */}
-
-              <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4">
-                <h2 className="text-2xl font-bold z-10">{continent.name}</h2>
-                <p className="text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
-                  {continent.description}
-                </p>
-              </div>
+                <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+                  <h3 className="font-display text-2xl font-semibold">
+                    {continent.name}
+                  </h3>
+                  <p className="mt-2 max-h-0 overflow-hidden text-sm leading-snug text-white/85 opacity-0 transition-all duration-500 group-hover:max-h-24 group-hover:opacity-100">
+                    {continent.description}
+                  </p>
+                  <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-mint">
+                    Explore
+                    <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1.5" />
+                  </span>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -7,25 +7,28 @@ import { FaLocationDot } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#222] text-white py-8 mt-10">
+    <footer className="bg-ink text-white py-10">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="">
           <span className="ml-2 text-xl font-bold">
-            <Link href="/">
+            <Link href="/" className="inline-block rounded-xl bg-white p-2">
               <Image
                 src="/images/justiway2.png"
-                alt="Logo"
-                width={200}
-                height={200}
+                alt="Justiway Travel & Tours"
+                width={140}
+                height={140}
               />
             </Link>
           </span>
           <p className=" mt-2 mb-4 font-bold text-2xl">
-            Let us plan your tours and travels.
+            Women-first tours. Planned with care.
           </p>
-          <button className="bg-gradient-to-r from-[#2137fc] to-[#50e3c2] text-white px-4 py-2 rounded-md hover:from-[#1a2bc7] hover:to-[#3dbfa2] transition-all duration-300">
-            Book Now
-          </button>
+          <Link
+            href="/contact"
+            className="inline-block rounded-full bg-gradient-to-r from-brand to-mint px-6 py-2.5 font-semibold text-white transition-all duration-300 hover:from-brand-dark hover:to-mint-dark"
+          >
+            Book a Tour
+          </Link>
         </div>
 
         <div className=" flex flex-col space-y-3 p-3">
@@ -33,48 +36,41 @@ export default function Footer() {
 
           <Link
             href="/"
-            className="text-gray-400 text-[14px] hover:text-[#2137fc] transition-all duration-300"
+            className="text-gray-400 text-[14px] hover:text-mint transition-all duration-300"
           >
             Home
           </Link>
 
           <Link
             href="/services"
-            className="text-gray-400 text-[14px] hover:text-[#2137fc] transition-all duration-300"
+            className="text-gray-400 text-[14px] hover:text-mint transition-all duration-300"
           >
             Services
           </Link>
 
           <Link
             href="/about"
-            className="text-gray-400 text-[14px] hover:text-[#2137fc] transition-all duration-300"
+            className="text-gray-400 text-[14px] hover:text-mint transition-all duration-300"
           >
             About Us
           </Link>
 
           <Link
             href="/tours"
-            className="text-gray-400 text-[14px] hover:text-[#2137fc] transition-all duration-300"
+            className="text-gray-400 text-[14px] hover:text-mint transition-all duration-300"
           >
             Tour Packages
           </Link>
           <Link
-            href="/visa"
-            className="text-gray-400 text-[14px] hover:text-[#2137fc] transition-all duration-300"
+            href="/safety"
+            className="text-gray-400 text-[14px] hover:text-mint transition-all duration-300"
           >
-            Visa & Immigration
-          </Link>
-
-          <Link
-            href="/study"
-            className="text-gray-400 text-[14px] hover:text-[#2137fc] transition-all duration-300"
-          >
-            Study Abroad
+            Safety Promise
           </Link>
 
           <Link
             href="/contact"
-            className="text-gray-400 text-[14px] hover:text-[#2137fc] transition-all duration-300"
+            className="text-gray-400 text-[14px] hover:text-mint transition-all duration-300"
           >
             Contact Us
           </Link>

@@ -1,108 +1,134 @@
 "use client";
-import { motion } from "framer-motion";
+import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { FaArrowRight, FaFemale } from "react-icons/fa";
+import { MdOutlineHealthAndSafety } from "react-icons/md";
+import PageHero from "@/components/PageHero";
+import SectionHeading from "@/components/SectionHeading";
 import { packages } from "../../../packagesData";
-export default function ToursPage () {
+
+export default function ToursPage() {
+  const [active, setActive] = useState("All");
+  const categories = useMemo(
+    () => ["All", ...Array.from(new Set(packages.map((p) => p.category)))],
+    []
+  );
+  const visible =
+    active === "All" ? packages : packages.filter((p) => p.category === active);
+
   return (
     <>
-      <motion.div className="relative">
-        <div className="h-auto relative">
-          <Image
-            src="/images/toursimg.jpg"
-            alt="About Us"
-            width={1500}
-            height={100}
-            className="w-full h-[80vh] object-cover"
-            priority
+      <PageHero
+        image="/images/toursimg.jpg"
+        alt="A woman relaxing on a boat surrounded by green cliffs"
+        title="Women-Only Tour Packages"
+        subtitle="Small groups, vetted guides and 24/7 support, on trips planned around your comfort."
+        crumb="Tours"
+        position="50% 30%"
+      />
+
+      <section className="mx-auto max-w-4xl px-4 pt-16 text-center">
+        <p className="text-lg leading-relaxed text-ink/75">
+          Whether you want to relax on a sun-drenched beach, wander historic
+          cities, celebrate a milestone with your girls or take your first solo
+          trip, you will travel in a small group of women. Every package
+          follows our{" "}
+          <Link
+            href="/safety"
+            className="font-semibold text-brand underline underline-offset-4 hover:text-brand-dark"
+          >
+            Safety Promise
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section className="py-14">
+        <div className="mx-auto max-w-7xl px-4">
+          <SectionHeading
+            eyebrow="Find your trip"
+            title="Our Women-Only Tour Packages"
           />
 
-          <div className="absolute inset-0 bg-black/50" />
-
-          <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4">
-            <h1 className="text-3xl font-bold mb-2">Tour Packages</h1>
-            <p className="text-sm text-gray-200">
-              <Link
-                href="/"
-                className="font-bold hover:underline text-gray-300"
+          <div
+            className="mb-10 flex flex-wrap justify-center gap-2"
+            role="tablist"
+            aria-label="Filter packages by category"
+          >
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                role="tab"
+                aria-selected={active === cat}
+                onClick={() => setActive(cat)}
+                className={`rounded-full px-5 py-2 text-sm font-semibold transition-all duration-300 ${
+                  active === cat
+                    ? "bg-gradient-to-r from-brand to-mint text-white shadow-md"
+                    : "bg-white text-ink/70 shadow-sm hover:text-brand hover:shadow-md"
+                }`}
               >
-                Home
-              </Link>
-              <span className="mx-2 font-bold">{">"}</span>
-              <span className="text-[#2137fc] font-bold">Tours</span>
-            </p>
+                {cat}
+              </button>
+            ))}
           </div>
-          {typeof window !== "undefined" && (
-            <motion.div
-              initial={{ x: -100, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="absolute top-0 bg-black/50 text-white p-4 h-full w-[90%] md:w-[35%] text-lg leading-relaxed flex justify-center items-center pl-8 hidden lg:flex"
-            >
-              At Justiway Travel & Tours, we specialize in crafting
-              unforgettable travel experiences tailored uniquely to you. Whether
-              your ideal escape involves relaxing on a sun-drenched tropical
-              beach, discovering the charm of historic cities, immersing
-              yourself in vibrant cultures, or enjoying a romantic getaway with
-              your partner, we’ve got you covered. Our tour packages are
-              designed with flexibility in mind, carefully customized to match
-              your budget, interests, and schedule. With our experienced team
-              handling every detail, all you have to do is focus on making
-              lasting memories.
-            </motion.div>
-          )}
-        </div>
-      </motion.div>
 
-      <section className="py-12 bg-blue-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8 text-[#222] underline">
-            Our Tour Packages
-          </h2>
-          <div className="">
-            <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
-              {packages.map((pkg, i) => (
-                <motion.div
+          <div className="columns-1 gap-6 sm:columns-2 lg:columns-3">
+            <AnimatePresence mode="popLayout">
+              {visible.map((pkg, i) => (
+                <motion.article
                   key={pkg.id}
-                  className="mb-6 break-inside-avoid bg-white rounded-lg shadow-lg overflow-hidden"
+                  layout
+                  className="group mb-6 break-inside-avoid overflow-hidden rounded-2xl bg-white shadow-md transition-shadow duration-300 hover:shadow-2xl"
                   initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
                 >
-                  <motion.img
-                    src={pkg.image}
-                    alt={pkg.title}
-                    className={`w-full object-cover mb-3 ${pkg.heightClass}`}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <div className="px-4">
-                    <h3 className="text-lg font-semibold mb-2 text-[#222]">
+                  <div className={`relative overflow-hidden ${pkg.heightClass}`}>
+                    <Image
+                      src={pkg.image}
+                      alt={pkg.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
+                    <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-brand backdrop-blur">
+                      {pkg.category}
+                    </span>
+                    <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-xs font-bold text-white shadow">
+                      <FaFemale /> Women-only
+                    </span>
+                  </div>
+
+                  <div className="p-5">
+                    <h3 className="font-display text-xl font-semibold text-ink">
                       {pkg.title}
                     </h3>
-                    <p className="text-gray-600 text-lg">{pkg.description}</p>
-                    <div className=" flex items-center justify-between mt-4">
-                      <span className="inline-block bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full mb-4">
-                        {pkg.category}
-                      </span>
-                      <Link
-                        href="/contact"
-                        className="inline-block bg-gradient-to-r from-[#2137fc] to-[#50e3c2] text-white px-3 py-1 mb-4 rounded-md hover:from-[#1a2bc7] hover:to-[#3dbfa2] transition-all duration-300"
-                      >
-                        {pkg.book}
-                      </Link>
-                    </div>
+                    <p className="mt-2 leading-relaxed text-ink/70">
+                      {pkg.description}
+                    </p>
+                    <p className="mt-4 flex items-start gap-2 rounded-xl bg-mint/15 p-3 text-sm font-medium text-teal-800">
+                      <MdOutlineHealthAndSafety className="mt-0.5 shrink-0 text-lg" />
+                      {pkg.safety}
+                    </p>
+                    <Link
+                      href="/contact"
+                      className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand to-mint px-5 py-2.5 font-semibold text-white transition-all duration-300 hover:from-brand-dark hover:to-mint-dark hover:shadow-lg"
+                    >
+                      {pkg.book}
+                      <FaArrowRight className="text-sm transition-transform duration-300 group-hover:translate-x-1" />
+                    </Link>
                   </div>
-                </motion.div>
+                </motion.article>
               ))}
-            </div>
+            </AnimatePresence>
           </div>
         </div>
       </section>
     </>
   );
-
-
 }

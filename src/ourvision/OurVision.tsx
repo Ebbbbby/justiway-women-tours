@@ -14,8 +14,8 @@ const OurVision = () => {
   //   },
   // };
   return (
-    <div className=" w-fullw-full bg-gradient-to-br from-blue-50 to-blue-100">
-      <div className=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 text-[#222]">
+    <div className=" w-full bg-gradient-to-br from-blush to-cream">
+      <div className=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 text-ink">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <motion.div
             // className=" w-full md:w-[400px] lg:w-[580px] xl-w-[650px]"
@@ -55,32 +55,18 @@ const OurVision = () => {
               viewport={{ once: true, margin: "-100px" }}
               variants={containerVariants}
             >
-              <div className="text-[#222] max-w-8xl mx-auto px-4 py-6">
-                <h2 className="text-2xl font-bold underline mb-2">
+              <div className="text-ink max-w-8xl mx-auto px-4 py-6">
+                <h2 className="text-2xl font-display font-semibold mb-2">
                   Mission Statement
                 </h2>
                 <p className="mb-4 text-lg leading-relaxed">
-                  At Justiway Travel & Tours, our mission is to empower
-                  individuals and families to explore the world with confidence.
-                  We achieve this by providing expert travel solutions,
-                  including seamless visa processing, curated tour experiences,
-                  reliable flight and hotel bookings, travel insurance, and
-                  academic admissions support. Our dedicated team ensures
-                  personalized guidance, 24/7 support, and exceptional value,
-                  making every journey smooth, enriching, and memorable.
+                  Justiway Travel & Tours exists to help women explore the world safely, confidently and on their own terms. We design women-only tours led by vetted guides, book carefully screened hotels and transfers, and stay reachable 24/7, so every journey feels as good as it looks.
                 </p>
-                <h2 className="text-2xl font-bold underline mb-2">
+                <h2 className="text-2xl font-display font-semibold mb-2">
                   Vision Statement
                 </h2>
                 <p className="mb-4 text-lg leading-relaxed">
-                  Our vision is to be the most trusted and innovative travel
-                  solutions provider in Nigeria and beyond. We aspire to open
-                  doors to global opportunities by delivering exceptional
-                  service, fostering cultural exploration,and simplifying
-                  international travel and study processes. Through our
-                  commitment to excellence and customer satisfaction, we aim to
-                  become the go-to partner for travelers seeking seamless and
-                  enriching experiences worldwide.
+                  Our vision is to become Africa's most trusted women-first travel brand, where safety is measured, not just promised, and where every woman, whether solo or with friends, can say yes to the next destination without second-guessing it.
                 </p>
               </div>
             </motion.div>
@@ -100,7 +86,7 @@ const OurVision = () => {
               }}
             >
               <motion.h2
-                className="text-2xl md:text-2xl font-bold underline mb-4"
+                className="text-2xl md:text-2xl font-display font-semibold mb-4"
                 variants={{
                   hidden: { opacity: 0, y: 10 },
                   visible: { opacity: 1, y: 0 },
@@ -110,25 +96,16 @@ const OurVision = () => {
               </motion.h2>
 
               <motion.p
-                className="mb-4 text-base md:text-lg leading-relaxed"
+                className="mb-4 text-lg leading-relaxed"
                 variants={{
                   hidden: { opacity: 0, y: 10 },
                   visible: { opacity: 1, y: 0 },
                 }}
               >
-                <p className="mb-4 text-lg leading-relaxed">
-                  At Justiway Travel & Tours, our mission is to empower
-                  individuals and families to explore the world with confidence.
-                  We achieve this by providing expert travel solutions,
-                  including seamless visa processing, curated tour experiences,
-                  reliable flight and hotel bookings, travel insurance, and
-                  academic admissions support. Our dedicated team ensures
-                  personalized guidance, 24/7 support, and exceptional value,
-                  making every journey smooth, enriching, and memorable.
-                </p>
+                Justiway Travel & Tours exists to help women explore the world safely, confidently and on their own terms. We design women-only tours led by vetted guides, book carefully screened hotels and transfers, and stay reachable 24/7, so every journey feels as good as it looks.
               </motion.p>
               <motion.h2
-                className="text-2xl md:text-2xl font-bold underline mb-4"
+                className="text-2xl md:text-2xl font-display font-semibold mb-4"
                 variants={{
                   hidden: { opacity: 0, y: 10 },
                   visible: { opacity: 1, y: 0 },
@@ -138,22 +115,13 @@ const OurVision = () => {
               </motion.h2>
 
               <motion.p
-                className="mb-6 text-base md:text-lg leading-relaxed"
+                className="mb-4 text-lg leading-relaxed"
                 variants={{
                   hidden: { opacity: 0, y: 10 },
                   visible: { opacity: 1, y: 0 },
                 }}
               >
-                <p className="mb-4 text-lg leading-relaxed">
-                  Our vision is to be the most trusted and innovative travel
-                  solutions provider in Nigeria and beyond. We aspire to open
-                  doors to global opportunities by delivering exceptional
-                  service, fostering cultural exploration,and simplifying
-                  international travel and study processes. Through our
-                  commitment to excellence and customer satisfaction, we aim to
-                  become the go-to partner for travelers seeking seamless and
-                  enriching experiences worldwide.
-                </p>
+                Our vision is to become Africa&apos;s most trusted women-first travel brand, where safety is measured, not just promised, and where every woman, whether solo or with friends, can say yes to the next destination without second-guessing it.
               </motion.p>
 
             </motion.div>

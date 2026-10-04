@@ -1,10 +1,50 @@
 import ChoiceCard from "@/components/ChoiceCard";
+import SectionHeading from "@/components/SectionHeading";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { BiSupport } from "react-icons/bi";
-import { FaHandshake, FaHotel, FaPassport } from "react-icons/fa";
-import { LuNotebookPen } from "react-icons/lu";
-import { MdFlight } from "react-icons/md";
-import { RiCompassDiscoverLine, RiVisaLine } from "react-icons/ri";
+import { FaCar, FaHotel, FaUserCheck, FaUsers } from "react-icons/fa";
+import { MdOutlineHealthAndSafety } from "react-icons/md";
+
+const reasons = [
+  {
+    title: "Women-Only Groups",
+    description:
+      "Every departure is exclusively for women, so you can relax, be yourself and make friends fast.",
+    icon: <FaUsers />,
+  },
+  {
+    title: "Vetted Guides & Partners",
+    description:
+      "Guides, drivers and hosts are checked and briefed on our safety standards before they work with us.",
+    icon: <FaUserCheck />,
+  },
+  {
+    title: "Screened Stays",
+    description:
+      "Hotels are chosen for secure locations, well-lit surroundings and reliable front-desk service.",
+    icon: <FaHotel />,
+  },
+  {
+    title: "Verified Transfers",
+    description:
+      "Airport pick-ups and local transport are pre-arranged with trusted drivers, so no hailing strangers at night.",
+    icon: <FaCar />,
+  },
+  {
+    title: "24/7 Support",
+    description:
+      "A real person is reachable day or night from the moment you leave home until you land back.",
+    icon: <BiSupport />,
+  },
+  {
+    title: "Our Safety Promise",
+    description:
+      "See exactly what we commit to on every trip and how we handle it when things go wrong.",
+    icon: <MdOutlineHealthAndSafety />,
+    href: "/safety",
+  },
+];
 
 export default function Card() {
   const container = {
@@ -32,87 +72,34 @@ export default function Card() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto py-14 mt-6 px-4 sm:px-6 lg:px-8 text-[#222]">
-      <motion.h1
-        className="text-3xl font-bold mb-4 text-[#222] text-center underline"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6 }}
-      >
-        Why Travel With Justiway
-      </motion.h1>
+    <div id="why-justiway" className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Why Justiway"
+        title="Why Women Travel With Justiway"
+        subtitle="Six commitments that come with every trip, not extras you pay for."
+      />
 
       <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         variants={container}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
       >
-        <motion.div variants={item}>
-          <ChoiceCard
-            title="Expert Guidance"
-            description="Our seasoned travel experts provide trusted advice tailored to your unique needs."
-            icon={<RiCompassDiscoverLine />}
-          />
-        </motion.div>
-
-        <motion.div variants={item}>
-          <ChoiceCard
-            title="Seamless Planning"
-            description="We ensure every travel detail is perfectly planned for stress free experiences."
-            icon={<LuNotebookPen />}
-          />
-        </motion.div>
-        <motion.div variants={item}>
-          <ChoiceCard
-            title="24/7 Support"
-            description="We're always here, day or night to support you throughout your journey."
-            icon={<BiSupport />}
-          />
-        </motion.div>
-
-        <motion.div variants={item}>
-          <ChoiceCard
-            title="Travel Visa Assistance"
-            description="Expert help with visa applications and travel requirements"
-            icon={<RiVisaLine />}
-            className="bg-blue-50 border-blue-100"
-          />
-        </motion.div>
-        <motion.div variants={item}>
-          <ChoiceCard
-            title="Value Guarantee"
-            description="We guarantee the best value through trusted services and unforgettable experiences"
-            icon={<FaHandshake />}
-            className="bg-amber-50 border-amber-200"
-          />
-        </motion.div>
-
-        <motion.div variants={item}>
-          <ChoiceCard
-            title="Hotel Bookings"
-            description="We help book quality hotels for your comfort in any travel destination"
-            icon={<FaHotel />}
-            className="bg-emerald-50 border-emerald-100"
-          />
-        </motion.div>
-        <motion.div variants={item}>
-          <ChoiceCard
-            title="Flight Bookings"
-            description="We handle your flight reservations swiftly. Affordable, convenient, and perfectly timed trips"
-            icon={<MdFlight />}
-          />
-        </motion.div>
-
-        <motion.div variants={item}>
-          <ChoiceCard
-            title="Nigerian Passport Application"
-            description="We assist with passport applications, making the process faster and stress free"
-            icon={<FaPassport />}
-          />
-        </motion.div>
+        {reasons.map((reason) => {
+          const card = (
+            <ChoiceCard
+              title={reason.title}
+              description={reason.description}
+              icon={reason.icon}
+            />
+          );
+          return (
+            <motion.div variants={item} key={reason.title}>
+              {reason.href ? <Link href={reason.href}>{card}</Link> : card}
+            </motion.div>
+          );
+        })}
       </motion.div>
     </div>
   );

@@ -15,8 +15,7 @@ const Navbar = () => {
     { href: "/about", label: "About Us" },
     { href: "/services", label: "Services" },
     { href: "/tours", label: "Tour Packages" },
-    { href: "/visa", label: "Visa & Immigration" },
-    { href: "/study", label: "Study Abroad" },
+    { href: "/safety", label: "Safety Promise" },
     { href: "/contact", label: "Contact Us" },
   ];
   useEffect(() => {
@@ -48,7 +47,7 @@ const Navbar = () => {
               </span>
             </div>
           </div>
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
 
@@ -58,16 +57,22 @@ const Navbar = () => {
                   href={link.href}
                   className={`text-[16px] font-bold transition-all duration-300 ${
                     isActive
-                      ? "text-[#2137fc]"
-                      : "text-[#222] hover:text-[#2137fc]"
+                      ? "text-brand"
+                      : "text-[#222] hover:text-brand"
                   }`}
                 >
                   {link.label}
                 </Link>
               );
             })}
+            <Link
+              href="/contact"
+              className="rounded-full bg-gradient-to-r from-brand to-mint px-5 py-2 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:from-brand-dark hover:to-mint-dark hover:shadow-lg"
+            >
+              Book a Tour
+            </Link>
           </div>
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700"
               onClick={() => setIsOpen(!isOpen)}
@@ -77,7 +82,7 @@ const Navbar = () => {
           </div>
 
           <div
-            className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
+            className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ${
               isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
             onClick={() => setIsOpen(false)}
@@ -132,8 +137,8 @@ const Navbar = () => {
                     onClick={() => setIsOpen(!isOpen)}
                     className={`text-[16px] font-bold transition-all duration-300 py-3 ${
                       isActive
-                        ? "text-[#2137fc]"
-                        : "text-[#222] hover:text-[#2137fc]"
+                        ? "text-brand"
+                        : "text-[#222] hover:text-brand"
                     }`}
                   >
                     {link.label}
@@ -142,9 +147,13 @@ const Navbar = () => {
               })}
 
               <div className="mt-6">
-                <button className="bg-gradient-to-r from-[#2137fc] to-[#50e3c2] text-white px-4 py-2 rounded-md hover:from-[#1a2bc7] hover:to-[#3dbfa2] transition-all duration-300">
-                  Book Now
-                </button>
+                <Link
+                  href="/contact"
+                  onClick={() => setIsOpen(false)}
+                  className="inline-block rounded-full bg-gradient-to-r from-brand to-mint px-6 py-2.5 font-semibold text-white transition-all duration-300 hover:from-brand-dark hover:to-mint-dark"
+                >
+                  Book a Tour
+                </Link>
               </div>
             </div>
           </div>

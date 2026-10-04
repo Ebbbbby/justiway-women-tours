@@ -29,7 +29,7 @@ const containerVariants = {
   },
 };
   return (
-    <div className="max-w-7xl mx-auto py-14 mt-6 px-4 sm:px-6 lg:px-8 text-[#222]">
+    <div className="max-w-7xl mx-auto py-14 mt-6 px-4 sm:px-6 lg:px-8 text-ink">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white rounded-md p-6">
         <motion.div
           initial="hidden"
@@ -37,26 +37,20 @@ const containerVariants = {
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
         >
-          <h2 className="text-2xl font-bold underline mb-4">Who We Are</h2>
+          <h2 className="text-2xl font-bold font-display font-semibold mb-4">Who We Are</h2>
         
           <p className="mb-4 text-lg leading-relaxed ">
-            We are a team of passionate individuals dedicated to providing the
-            best services in our field. Our mission is to deliver quality and
-            excellence in everything we doJustiway Tours was founded with a
-            passion for travel and a commitment to providing unforgettable
-            experiences. Our journey began with a simple idea: to connect people
-            with the beauty of the world through personalized tours and
-            adventures. Over the years, we have grown into a trusted name in the
-            travel industry, known for our exceptional service and dedication to
-            customer satisfaction.
+            Justiway Travel & Tours was founded on a simple idea: women
+            deserve to see the world without having to second-guess their
+            safety. We build women-only tours in which every guide, hotel and
+            transfer is chosen with that in mind, so you can focus on the
+            adventure.
           </p>
           <p className="mb-4 text-lg leading-relaxed">
-            We believe that travel is not just about visiting new places, but
-            about creating lasting memories and building connections with people
-            from different cultures. Our team of experienced guides and travel
-            experts work tirelessly to curate unique itineraries that cater to
-            the diverse interests of our clients, ensuring that every trip is a
-            memorable one.
+            We believe travel is about more than places. It is about
+            confidence, friendship and the stories you bring home. Our team
+            curates itineraries around the interests of our travellers and
+            keeps them in company they trust from take-off to touchdown.
           </p>
         </motion.div>
 

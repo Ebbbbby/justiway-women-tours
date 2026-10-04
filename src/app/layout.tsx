@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
@@ -12,14 +12,20 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+});
+
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Justiway Travel & Tours",
-  description: " Explore the world with confidence at Justiway Travel & Tours. We specialize in visa support, study abroad programs, and unforgettable travel experiences.",
+  title: "Justiway Travel & Tours | Women-Only Tours",
+  description:
+    "Safe, women-first travel. Justiway Travel & Tours runs women-only tours with vetted guides, screened stays and 24/7 support.",
 };
 
 export default function RootLayout({
@@ -30,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}
       >
         <Header />
         <Navbar />

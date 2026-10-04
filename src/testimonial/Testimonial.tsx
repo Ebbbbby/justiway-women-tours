@@ -2,23 +2,25 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { FaQuoteLeft, FaStar } from "react-icons/fa";
+import SectionHeading from "@/components/SectionHeading";
 
 const testimonials = [
   {
     name: "Amaka Eze.",
-    text: "Justiway Travel made my vacation in Greece seamless. From visa to hotel bookings, everything was handled perfectly.",
+    text: "Travelling to Greece with a group of women felt so safe and easy. The hotels, transfers and guide were all handled perfectly.",
     location: "Lagos, Nigeria",
     image: "/images/profile1.jpg",
   },
   {
-    name: "John Sule.",
-    text: "The customer service is top-notch. They helped me navigate my study application to Canada!",
+    name: "Ngozi Okoro.",
+    text: "I was nervous about my first solo trip. The 24/7 support and the other women on the tour made all the difference.",
     location: "Abuja, Nigeria",
     image: "/images/profile2.jpg",
   },
   {
     name: "Zainab Sule.",
-    text: "Booking a honeymoon to Mauritius through Justiway was the best decision ever!",
+    text: "My girls' getaway to Mauritius through Justiway was the best decision ever!",
     location: "Kano, Nigeria",
     image: "/images/profile3.jpg",
   },
@@ -35,47 +37,48 @@ const fadeUp = {
 
 const Testimonial = () => {
   return (
-    <section className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-20">
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="text-3xl font-bold text-center text-gray-800 mb-10 underline"
-      >
-        What Our Clients Are Saying
-      </motion.h2>
+    <section id="reviews" className="bg-white px-4 py-16 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Kind words"
+        title="What Our Travellers Say"
+        subtitle="Real trips, real women, in their own words."
+      />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-3">
         {testimonials.map((testimonial, index) => (
           <motion.div
             key={testimonial.name}
-            className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow duration-300"
+            className="relative rounded-2xl border border-ink/5 bg-cream p-7 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
             custom={index}
           >
-            <div className=" flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full overflow-hidden">
+            <FaQuoteLeft className="absolute right-6 top-6 text-4xl text-accent/20" />
+            <div className="mb-4 flex gap-1 text-amber-400" aria-label="5 out of 5 stars">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <FaStar key={i} />
+              ))}
+            </div>
+            <p className="mb-6 leading-relaxed text-ink/80">
+              &ldquo;{testimonial.text}&rdquo;
+            </p>
+            <div className="flex items-center gap-4">
+              <div className="h-12 w-12 overflow-hidden rounded-full ring-2 ring-mint">
                 <Image
                   src={testimonial.image}
                   alt={testimonial.name}
                   width={50}
                   height={50}
-                  className="w-full h-full rounded-full object-cover"
+                  className="h-full w-full rounded-full object-cover"
                 />
               </div>
-
               <div>
-                <h4 className="font-semibold text-gray-800">
-                  {testimonial.name}
-                </h4>
-                <p className="text-sm text-gray-500">{testimonial.location}</p>
+                <h4 className="font-semibold text-ink">{testimonial.name}</h4>
+                <p className="text-sm text-ink/60">{testimonial.location}</p>
               </div>
             </div>
-            <p className="text-gray-600 italic">“{testimonial.text}”</p>
           </motion.div>
         ))}
       </div>

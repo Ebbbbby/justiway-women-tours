@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { activities } from "../../activitiesData";
 import { motion } from "framer-motion";
 import { Carousel } from "react-responsive-carousel";
@@ -24,9 +25,9 @@ export default function OurActivities() {
   };
 
   return (
-    <div className="py-16 mt px-4 sm:px-6 lg:px-8 bg-gray-50 text-[#222] ">
+    <div className="py-16 mt px-4 sm:px-6 lg:px-8 bg-gray-50 text-ink ">
       <motion.h2
-        className="text-2xl font-bold mb-4 text-[#222] text-center underline"
+        className="text-2xl font-bold mb-4 text-ink text-center font-display font-semibold"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
@@ -34,7 +35,7 @@ export default function OurActivities() {
       >
         Explore Our Activities
       </motion.h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 max-w-7xl mx-auto text-[#222]">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 max-w-7xl mx-auto text-ink">
         <motion.div
           className="grid grid-cols-2 lg:grid-cols-2 gap-4"
           initial={{ opacity: 0, x: -30 }}
@@ -83,9 +84,12 @@ export default function OurActivities() {
             {selected.description}
           </p>
           <div className="mt-6 flex items-center justify-center">
-            <button className="bg-gradient-to-r from-[#2137fc] to-[#50e3c2] text-white px-4 py-2 rounded-md hover:from-[#1a2bc7] hover:to-[#3dbfa2] transition-all duration-300">
+            <Link
+              href="/contact"
+              className="rounded-full bg-gradient-to-r from-brand to-mint px-6 py-2.5 font-semibold text-white transition-all duration-300 hover:from-brand-dark hover:to-mint-dark hover:shadow-lg"
+            >
               Book Now
-            </button>
+            </Link>
           </div>
         </motion.div>
 
