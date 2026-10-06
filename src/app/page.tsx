@@ -59,13 +59,6 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, [currentSlide]);
 
-  useEffect(() => {
-    slides.forEach((s) => {
-      const img: HTMLImageElement = new window.Image();
-      img.src = s.image;
-    });
-  }, []);
-
   return (
     <>
       <section className="relative overflow-hidden bg-cream">
@@ -167,6 +160,25 @@ export default function Home() {
                   />
                 </motion.div>
               </AnimatePresence>
+            </div>
+
+            {/* Warm the other slides through the image optimizer (same
+                sizes/quality as the visible one) so crossfades never flash. */}
+            <div className="hidden" aria-hidden="true">
+              {slides.map(
+                (s, i) =>
+                  i !== currentSlide && (
+                    <Image
+                      key={s.image}
+                      src={s.image}
+                      alt=""
+                      fill
+                      loading="eager"
+                      sizes="(max-width: 1024px) 170vw, 940px"
+                      quality={90}
+                    />
+                  )
+              )}
             </div>
 
             <motion.div
