@@ -1,0 +1,9 @@
+# Stage 1: data + baseline. Add torch/transformers/fastapi in later stages.
+pandas>=2.2
+numpy>=1.26
+scikit-learn>=1.5
+datasets>=3.0
+pyarrow>=15
+matplotlib>=3.8
+tqdm>=4.66
+ipykernel>=6.29

@@ -1,0 +1,13 @@
+# Environment and caches
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# Raw and processed datasets stay out of git (licences; size).
+# Labelled CSVs in data/labelled/ ARE committed.
+data/raw/
+data/processed/
+
+# Trained weights are large; document how to regenerate instead
+models/*
+!models/.gitkeep
